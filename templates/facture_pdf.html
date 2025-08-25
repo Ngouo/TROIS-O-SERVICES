@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Facture - {{ commande.matricule_commande }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h2 { color: #2c3e50; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; }
+        th { background-color: #f4f4f4; }
+        .total { text-align: right; font-weight: bold; margin-top: 10px; }
+        .btn-print { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <header style="height: 11rem;">
+		<center>
+			<h1><u>TROIS O SERVICES</u></h1>
+		</center>
+    </header>
+
+    <h2> Facture - {{ commande.matricule_commande }}</h2>
+
+    <p><strong>Date :</strong> {{ commande.date_commande|date:"d/m/Y" }}</p>
+    <p><strong>Client :</strong> {{ commande.client.nom_client }}</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Article</th>
+                <th>Quantité</th>
+                <th>Prix unitaire</th>
+                <th>Sous-total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in articles %}
+            <tr>
+                <td>{{ item.article.nom_article }}</td>
+                <td>{{ item.quantite }}</td>
+                <td>{{ item.article.prix_unitaire }} FCFA</td>
+                <td>{{ item.sous_total }} FCFA</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p class="total">Total : {{ total }} FCFA</p>
+
+
+</body>
+</html>

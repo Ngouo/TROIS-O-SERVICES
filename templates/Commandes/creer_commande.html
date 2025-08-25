@@ -1,0 +1,15 @@
+{% extends "base.html" %} {% load crispy_forms_tags %}
+{% block content %}
+
+	<form action="" method="POST">
+		{% csrf_token %}
+		{{ commande_form | crispy }}
+        {{ formset.management_form }}
+        {% for form in formset %}
+            {{ form |crispy }}
+        {% endfor %}
+        <p>Montant total : {{total}}</p>            
+		<button type="submit">Valider</button>
+	</form>
+
+{% endblock content %}

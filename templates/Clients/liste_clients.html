@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+  <br>
+	<div style="display: flex; justify-content: flex-end;">
+	  <button class="btn btn-success" style="height: 38px; width: 12rem;">
+      <span class="fa fa-plus-circle" style="color: white;"></span>
+      <a id="ajout" href="ajout_clients" style="color: white;
+      text-decoration: none;">Nouveau client
+      </a>
+    </button><br>
+	</div>
+	<br>
+	<table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Nom et Prenom</th>
+            <th scope="col">Numéro de Telephone</th>
+            <th scope="col">Date d'Enregistrement</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%for client in Clients %}    
+           <tr>
+            <td>{{client.nom_client}}</td>
+            <td>{{client.num_telephone}}</td>
+            <td>{{client.date_ajout}}</td>
+            <td>
+              <div style="letter-spacing: 5px;">
+              <a href="{{client.id}}/update_clients" title="Modifier informations"><span class="fa fa-pencil-alt"></a>
+                <a href="{{client.id}}/delete" title="Supprimer"><span class="fa fa-trash-alt"></a> 
+                <a href="{%url 'relance_client' client.id%}" title="Relancer par e-mail"><span class="fa fa-comment-alt"></a> 
+              </div>
+            </td>
+           </tr>
+         {% endfor %}  
+        </tbody>
+    </table>	
+
+{% endblock content %}

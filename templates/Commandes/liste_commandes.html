@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+                <section id="search" class="d-flex" class="alt">
+					<form method="get" action="#">
+						<input type="text" name="query" id="query" placeholder="Entrer le nom du Client" value="{{ request.GET.query }}"/>
+                         <button style="text-transform: uppercase;" class="btn btn-outline-success" type="submit">Rechercher</button>                                       
+					</form>
+				</section>
+
+		 <h2>Liste des commandes</h2>
+
+            {% for commande in commandes %}
+                <div class="{% if commande.date_retrait %}payee {% else %}non-payee{% endif %}" style="border: solid 2px;">
+                       <strong>Matricule :</strong> {{ commande.matricule }}<br>
+                       <strong>Client :</strong> {{ commande.client }}<br>
+                       <strong>Date :</strong> {{ commande.date|date:"d/m/Y" }}
+
+                    <!-- dans ce bloc on spécifie que si la date de retrait est définie affiche le statut Payé, sinon affiche Impayée  -->
+                       {% if commande.date_retrait %}   
+                       <p>Statut : <strong style="color: green;">{{ commande.statut }}</strong></p> 
+                       {%else%}
+                           <p>Statut : <strong style="color: red;">{{ commande.statut }}</strong></p>
+                           <button><a href="{% url 'retrait_commande' commande.id %}">Régler</a></button> 
+                        {% endif %}
+
+                   <!-- ############################################ -->
+
+                    <table style="width:100%; margin-top:12px; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background:#eee;">
+                                <th>Article</th>
+                                <th>Quantité</th>
+                                <th>Prix unitaire</th>
+                                <th>Sous-total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           {% for art in commande.articles %}
+                                <tr>
+                                    <td>{{ art.nom }}</td>
+                                    <td>{{ art.quantite }}</td>
+                                    <td>{{ art.prix }} FCFA</td>
+                                    <td>{{ art.sous_total }} FCFA</td>
+                               </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                
+                            <p style="margin-top:10px;"><strong>Total :</strong> {{ commande.total }} FCFA</p>
+            	</div>
+            {% empty %}
+                <p>Aucune commande enregistrée pour le moment.</p>
+            {% endfor %}
+                            
+
+{% endblock content %}

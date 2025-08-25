@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+	<br>
+	<div style="display: flex; justify-content: flex-end;">
+	  <button class="btn btn-success" style="height: 38px; width: 12rem;">
+      <span class="fa fa-plus-circle" style="color: white;"></span> 
+      <a id="ajout" href="ajout_article" style="color: white;
+        text-decoration: none;">Nouvel article
+      </a>
+    </button>
+	</div>
+
+	<br>
+	<table class="table table-striped">
+        <thead>
+          <tr>                  
+            <th scope="col">Article</th>
+            <th scope="col">Prix Unitaire</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%for article in articles %}    
+          <tr>
+            <td>{{article.nom_article}}</td>
+            <td>{{article.prix_unitaire}} XAF</td>
+            <td><a style="color: blue;" href="{{article.id}}/update_article"><span class="fa fa-pencil-alt"></span></a></td>              
+          </tr>
+          {% endfor %}  
+
+        </tbody>
+    </table>	
+
+{% endblock content %}

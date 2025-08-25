@@ -1,0 +1,10 @@
+{% extends "base.html" %} {% load crispy_forms_tags %}
+{% block content %}
+
+	<form action="" method="POST">
+		{% csrf_token %}
+		{{form.as_p}}
+		<button type="submit">Ajouter</button>
+	</form>
+
+{% endblock content %}

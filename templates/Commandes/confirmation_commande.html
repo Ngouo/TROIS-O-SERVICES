@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+ {% block content %}
+
+	<h2>Commande enregistrée avec succès !</h2>
+
+    <p><strong>Client :</strong> {{ commande.client.nom_client }}</p>
+    <p><strong>Date :</strong> {{ commande.date_commande }}</p>
+    <p><strong>Matricule :</strong> {{ commande.matricule_commande }}</p>
+
+    <h3>Détails des articles :</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Article</th>
+                <th>Quantité</th>
+                <th>Prix unitaire</th>
+                <th>Sous-total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in commande.articles_commande.all %}
+            <tr>
+                <td>{{ item.article.nom_article }}</td>
+                <td>{{ item.quantite }}</td>
+                <td>{{ item.article.prix_unitaire }} FCFA</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p><strong>Total :</strong> {{ commande.montant_total }} FCFA</p>
+
+    <button> <a href="{% url 'generer_facture' commande.id %}" target="_blank">Télécharger la facture PDF</a></button>
+    <button><a href="home">Retour à l'accueil</a></button>
+
+
+
+ {% endblock content %}

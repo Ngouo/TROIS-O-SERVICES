@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+	<p><strong>Client :</strong> {{ client.nom_client }}</p>
+
+		<table>
+		  <thead>
+		    <tr><th>Article</th><th>Quantité</th><th>Prix</th><th>Sous-total</th></tr>
+		  </thead>
+		  <tbody>
+		    {% for item in articles %}
+		      <tr>
+		        <td>{{ item.nom_article }}</td>
+		        <td>{{ item.quantite }}</td>
+		        <td>{{ item.prix_unitaire }} FCFA</td>
+		        <td>{{ item.sous_total }} FCFA</td>
+		      </tr>
+		    {% endfor %}
+		  </tbody>
+		</table>
+
+		<p><strong>Total :</strong> {{ total }} FCFA</p>
+		<form method="post" action="{% url 'confirmer_commande' %}">
+			{% csrf_token %}
+			<button type="submit">Confirmer la commande</button>
+		</form>
+
+{% endblock content %}
