@@ -10,5 +10,5 @@ def start_django():
 threading.Thread(target=start_django, daemon=True).start()
 
 # Attendre que le serveur soit prêt (optionnel : ajouter un délai ou un ping)
-webview.create_window("Pressing Trois-O", "http://127.0.0.1:8000/login", width=1200, height=800)
+webview.create_window("Pressing Trois-O", "https://trois-o-services.onrender.com/", width=1200, height=800)
 webview.start()

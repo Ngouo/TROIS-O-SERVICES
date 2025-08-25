@@ -6,6 +6,6 @@ from User_admin.views import MonLoginView
 urlpatterns = [
     #path('login', connexion, name="login"),
     #path('logout', deconnexion, name='logout'),
-    path('login/', MonLoginView.as_view(), name='login'),
+    path('', MonLoginView.as_view(), name=''),
     path('logout/', LogoutView.as_view(), name='logout'),
 ]
