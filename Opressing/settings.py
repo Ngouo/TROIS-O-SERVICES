@@ -94,11 +94,11 @@ WSGI_APPLICATION = 'Opressing.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'MajesticPressing',
-        'HOST': "127.0.0.1",
-        'USER': 'root',
-        'PASSWORD': '',
-        'PORT': 3306,
+         'NAME': 'devgilbert_opressing',
+        'USER': '409032',
+        'PASSWORD': 'gilbert2002.',
+        'HOST': 'mysql-devgilbert.alwaysdata.net',
+        'PORT': '3306',
 }
 }
 
